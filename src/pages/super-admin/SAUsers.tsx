@@ -150,22 +150,37 @@ export default function SAUsers() {
       </div>
 
       {/* User Detail Modal */}
-      <Modal open={!!selected} onClose={() => setSelected(null)} title="User Details" size="md">
+      <Modal open={!!selected} onClose={() => setSelected(null)} title="User Details" size="lg">
         {selected && (
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
-              <div className="w-14 h-14 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-xl font-bold">
+          <div className="space-y-5">
+            {/* Profile header */}
+            <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white flex items-center justify-center text-xl font-bold shrink-0 shadow-sm">
                 {selected.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
               </div>
-              <div>
-                <p className="font-semibold text-gray-900">{selected.name}</p>
-                <p className="text-sm text-gray-500">{selected.email}</p>
+              <div className="flex-1 min-w-0">
+                <p className="text-base font-bold text-gray-900">{selected.name}</p>
+                <p className="text-sm text-gray-500 mt-0.5">{selected.email}</p>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className={`badge ${roleColor[selected.role] ?? "bg-gray-100 text-gray-600"}`}>
+                    {selected.role.replace("_", " ")}
+                  </span>
+                  <span className={`badge-${selected.status}`}>{selected.status}</span>
+                  {selected.department && (
+                    <span className="text-xs text-gray-400">· {selected.department}</span>
+                  )}
+                </div>
               </div>
             </div>
+
+            {/* Editable fields */}
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="label">Role</p>
-                <select className="select" value={selected.role} onChange={(e) => { changeRole(selected.id, e.target.value); setSelected({ ...selected, role: e.target.value as any }); }}>
+                <select className="select" value={selected.role} onChange={(e) => {
+                  changeRole(selected.id, e.target.value);
+                  setSelected({ ...selected, role: e.target.value as any });
+                }}>
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
                   <option value="super_admin">Super Admin</option>
@@ -183,18 +198,29 @@ export default function SAUsers() {
                 </select>
               </div>
             </div>
-            <div>
-              <p className="label">Status</p>
-              <span className={`badge-${selected.status}`}>{selected.status}</span>
+
+            {/* Read-only info */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { label: "Account Status", value: selected.status },
+                { label: "Date Joined",    value: selected.dateJoined },
+              ].map((f) => (
+                <div key={f.label} className="bg-gray-50 rounded-xl px-4 py-3">
+                  <p className="text-xs font-medium text-gray-400 mb-1">{f.label}</p>
+                  <p className="text-sm font-semibold text-gray-800 capitalize">{f.value ?? "—"}</p>
+                </div>
+              ))}
             </div>
-            <div>
-              <p className="label">Joined</p>
-              <p className="text-sm text-gray-700">{selected.dateJoined}</p>
-            </div>
-            <div className="flex gap-3 justify-end pt-2 border-t border-gray-100">
+
+            <div className="flex gap-3 justify-end pt-1 border-t border-gray-100">
               <button className="btn-secondary" onClick={() => setSelected(null)}>Close</button>
-              <button className={selected.status === "suspended" ? "btn-primary" : "btn-danger"} onClick={() => { toggleSuspend(selected); setSelected(null); }}>
-                {selected.status === "suspended" ? <><Unlock size={14} />Activate</> : <><Lock size={14} />Suspend</>}
+              <button
+                className={selected.status === "suspended" ? "btn-primary" : "btn-danger"}
+                onClick={() => { toggleSuspend(selected); setSelected(null); }}
+              >
+                {selected.status === "suspended"
+                  ? <><Unlock size={14} />Activate Account</>
+                  : <><Lock size={14} />Suspend Account</>}
               </button>
             </div>
           </div>
