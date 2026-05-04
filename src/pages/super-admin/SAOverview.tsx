@@ -81,7 +81,7 @@ export default function SAOverview() {
     <div className="space-y-6">
 
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-[#12103a] to-[#1e1a5e] rounded-2xl px-6 py-5 flex items-center justify-between">
+      <div className="bg-gradient-to-r from-[#12103a] to-[#1e1a5e] rounded-2xl px-5 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <p className="text-gray-400 text-xs mb-1">{today}</p>
           <h2 className="text-white text-xl font-bold">{greeting}, {currentUser.name.split(" ")[0]} 👋</h2>
@@ -106,7 +106,7 @@ export default function SAOverview() {
       </div>
 
       {/* 6 KPI Cards with sparklines */}
-      <div className="grid grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4">
         {kpiCards.map((k) => (
           <div key={k.label} className="stat-card">
             <div className="flex items-start justify-between mb-1">
@@ -170,7 +170,7 @@ export default function SAOverview() {
       )}
 
       {/* Main grid: Activity feed + Right column */}
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
 
         {/* Activity Feed */}
         <div className="card col-span-2 flex flex-col">
@@ -265,7 +265,7 @@ export default function SAOverview() {
             Full report <ChevronRight size={12} />
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           {departmentStats.map((d) => (
             <div key={d.name} className={`card p-4 border ${d.border}`}>
               <div className="flex items-center gap-2 mb-3">
@@ -299,7 +299,7 @@ export default function SAOverview() {
       </div>
 
       {/* Bottom row: Top Courses + Admin Leaderboard */}
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
         {/* Top Courses */}
         <div className="card p-5">

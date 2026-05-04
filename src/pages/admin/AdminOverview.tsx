@@ -81,7 +81,7 @@ export default function AdminOverview() {
     <div className="space-y-6">
 
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-[#12103a] via-[#1e1a5e] to-[#0d2a4a] rounded-2xl px-6 py-5 flex items-center justify-between">
+      <div className="bg-gradient-to-r from-[#12103a] via-[#1e1a5e] to-[#0d2a4a] rounded-2xl px-5 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <p className="text-gray-400 text-xs mb-1">{today} · {currentUser.department} Department</p>
           <h2 className="text-white text-xl font-bold">{greeting}, {currentUser.name.split(" ")[0]} 👋</h2>
@@ -103,7 +103,7 @@ export default function AdminOverview() {
       </div>
 
       {/* 6 KPI Cards */}
-      <div className="grid grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4">
         {kpiCards.map((k) => (
           <div key={k.label} className="stat-card">
             <div className="flex items-start justify-between mb-1">
@@ -182,7 +182,7 @@ export default function AdminOverview() {
       )}
 
       {/* Main grid: Activity + Sidebar */}
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
 
         {/* Activity Feed */}
         <div className="card col-span-2 flex flex-col">
@@ -299,7 +299,7 @@ export default function AdminOverview() {
       </div>
 
       {/* Course Health + Top Students */}
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
         {/* Course Health Cards */}
         <div className="card p-5">
@@ -394,7 +394,7 @@ export default function AdminOverview() {
           </div>
           <Target size={16} className="text-gray-300" />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {skillsCompleted.map((s) => (
             <div key={s.skill} className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
