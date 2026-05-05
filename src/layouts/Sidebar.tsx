@@ -40,33 +40,33 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <aside
       className={`
-        w-64 min-h-screen bg-[#f0ebff] flex flex-col shrink-0
+        w-64 min-h-screen bg-[#2d1b69] flex flex-col shrink-0
         fixed inset-y-0 left-0 z-50 transition-transform duration-300 ease-in-out
         lg:relative lg:translate-x-0
         ${isOpen ? "translate-x-0" : "-translate-x-full"}
       `}
     >
       {/* Logo + mobile close */}
-      <div className="px-5 py-4 border-b border-purple-200 flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-sm">
             <GraduationCap size={15} className="text-white" />
           </div>
           <div>
-            <p className="text-purple-900 font-bold text-sm leading-tight tracking-tight">Edge Edu</p>
-            <p className="text-purple-400 text-xs">Admin Panel</p>
+            <p className="text-white font-bold text-sm leading-tight tracking-tight">Edge Edu</p>
+            <p className="text-purple-300 text-xs">Admin Panel</p>
           </div>
         </div>
         <button
           onClick={onClose}
-          className="lg:hidden p-1.5 rounded-lg text-purple-400 hover:text-purple-900 hover:bg-purple-100 transition-colors"
+          className="lg:hidden p-1.5 rounded-lg text-purple-300 hover:text-white hover:bg-white/10 transition-colors"
         >
           <X size={16} />
         </button>
       </div>
 
       {/* Role badge */}
-      <div className="px-4 py-3 border-b border-purple-200">
+      <div className="px-4 py-3 border-b border-white/10">
         <div className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl border ${
           currentRole === "super_admin"
             ? "bg-brand-600/15 border-brand-500/25"
@@ -81,7 +81,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               {currentRole === "super_admin" ? "Super Admin" : "Dept. Admin"}
             </p>
             {currentUser.department && (
-              <p className="text-gray-500 text-xs truncate">{currentUser.department}</p>
+              <p className="text-purple-300 text-xs truncate">{currentUser.department}</p>
             )}
           </div>
         </div>
@@ -118,19 +118,19 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       </nav>
 
       {/* User profile + logout */}
-      <div className="px-3 py-3 border-t border-purple-200 space-y-1">
-        <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-purple-100">
+      <div className="px-3 py-3 border-t border-white/10 space-y-1">
+        <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-white/5">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-sm">
             {currentUser.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-purple-900 text-xs font-semibold truncate">{currentUser.name}</p>
-            <p className="text-purple-400 text-xs truncate">{currentUser.email}</p>
+            <p className="text-white text-xs font-semibold truncate">{currentUser.name}</p>
+            <p className="text-purple-300 text-xs truncate">{currentUser.email}</p>
           </div>
         </div>
         <button
           onClick={handleLogout}
-          className="sidebar-link w-full text-purple-400 hover:text-red-500 hover:bg-red-50"
+          className="sidebar-link w-full text-purple-300 hover:text-red-400 hover:bg-red-500/10"
         >
           <LogOut size={14} />
           <span className="text-sm">Sign Out</span>
