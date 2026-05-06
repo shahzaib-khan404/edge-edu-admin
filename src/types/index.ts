@@ -117,6 +117,32 @@ export interface Notification {
   createdAt: string;
 }
 
+export type LessonStatus = "not_started" | "in_progress" | "completed" | "skipped";
+
+export interface LessonProgress {
+  lessonId: string;
+  status: LessonStatus;
+  quizScore?: number;
+  timeSpent?: number;
+  skippedAt?: string;
+}
+
+export interface ModuleProgress {
+  moduleId: string;
+  lessons: LessonProgress[];
+}
+
+export interface StudentEnrollment {
+  id: string;
+  name: string;
+  email: string;
+  courseId: string;
+  progress: number;
+  lastActive: string;
+  certificateIssued: boolean;
+  modules: ModuleProgress[];
+}
+
 export interface AuditLog {
   id: string;
   user: string;
